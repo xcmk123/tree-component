@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+
+.f-16 { 
+  font-size: 16px;
+}
+.container-header {
+  text-align: left;
+}
+
+.container-content {
+  display: flex;
+  position: relative;
+}
+
+.tree-line-mark {
+  position: sticky;
+  border-left: 1px solid red;
+  border-bottom: 1px solid red;
+  border-bottom-left-radius: 5px;
+  width: 50px;
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-bottom: 25px;
+}
+
+.tree-node {
+  width: 300px;
+}
+
+.tree-node-header {
+  font-weight: 700;
+  padding:  5px 16px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
