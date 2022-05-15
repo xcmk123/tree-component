@@ -22,6 +22,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  text-align: left;
 }
 
 .App-link {
@@ -51,17 +52,23 @@
 
 .tree-line-mark {
   position: sticky;
-  border-left: 1px solid red;
   border-bottom: 1px solid red;
   border-bottom-left-radius: 5px;
   width: 50px;
-  margin-top: 15px;
+  height: 12px;
   margin-left: 15px;
   margin-bottom: 25px;
 }
-
+.tree-line-mark-bg:not(:last-of-type) {
+  position: absolute;
+  border-left: 1px solid red;
+  width: 50px;
+  height: 100%;
+  margin-left: 15px;
+  margin-bottom: 25px;
+}
 .tree-node {
-  width: 300px;
+  /* width: 300px; */
 }
 
 .tree-node-header {
@@ -73,3 +80,6 @@
   box-sizing: border-box;
 }
 
+.name-group + .container-content-group {
+  color: red
+}

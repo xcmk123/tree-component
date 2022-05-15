@@ -88,13 +88,37 @@ function App() {
       <header className="App-header">
         {/* <AccordionTree list={TASKS} /> */}
         <div className='container-header'>
-          <div className="f-16">Triển khai khai báo timesheet trong toàn tập đoàn</div>
-          <div className="container-content">
-            <div className='tree-line-mark'>
-            </div>
-            <div className='tree-node'>
-              <div className="f-16 tree-node-header">Triển khai và xây dựng cơ chế</div>
-            </div>
+          <div className="f-16 name-group">Level 1</div>
+          <div className='container-content-group'>
+            {
+              [11,21,31].map(item =>     
+                <div className="container-content" key={item}>
+                  <div className='tree-line-mark'>
+                  </div>
+                  <div className='tree-line-mark-bg'/>
+                  <div className='tree-node'>
+                    <div className='container-header'>
+                      <div className="f-16">Level 2</div>
+                      <div className='container-content-group'>
+                        {
+                          [1,2,3].map((item) => 
+                            <div className='container-content' key={item}>
+                              <div className='tree-line-mark'></div>
+                              <div className='tree-line-mark-bg'/>
+                              <div className='tree-node'>
+                                <div className='container-header'>
+                                  <div className="f-16 tree-node-header">Level 3</div>
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
           </div>
         </div>
       </header>
