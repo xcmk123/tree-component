@@ -37,49 +37,116 @@
     transform: rotate(360deg);
   }
 }
+h4 {
+  margin: 0;
+}
 
 .f-16 { 
   font-size: 16px;
 }
-.container-header {
-  text-align: left;
+.mr-16 {
+  margin-right: 16px;
 }
 
-.container-content {
+.ctn-item {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.tree-line {
+  width: 40px;
+  border-bottom: 1px solid red;
+  border-left: 1px solid red;
+  border-bottom-left-radius: 5px;
+  box-sizing: border-box;
+  align-self: center;
+}
+
+.tree-line-root {
+  position: absolute;
+  left: 0;
+  border-left: 1px solid red;
+  height: 100%;
+  box-sizing: border-box;
+
+}
+
+.node-container {
+  display: flex;
+  align-items: center;
+}
+
+.node {
   display: flex;
   position: relative;
 }
-
-.tree-line-mark {
-  position: sticky;
-  border-bottom: 1px solid red;
-  border-bottom-left-radius: 5px;
-  width: 50px;
-  height: 12px;
-  margin-left: 15px;
-  margin-bottom: 25px;
-}
-.tree-line-mark-bg:not(:last-of-type) {
-  position: absolute;
-  border-left: 1px solid red;
-  width: 50px;
-  height: 100%;
-  margin-left: 15px;
-  margin-bottom: 25px;
-}
-.tree-node {
-  /* width: 300px; */
+.column {
+  flex-direction: column;
 }
 
-.tree-node-header {
-  font-weight: 700;
-  padding:  5px 16px;
-  height: 60px;
-  display: flex;
+/* .node-group .ctn-item:last-child .tree-line-root {
+  height: calc(50% - 3px);
+  top: 0;
+}  */
+
+p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+ul {
+  display: block;
+}
+
+
+/* ul.nested ul.nested:last-child .node.column .tree-line-root {
+  display: none;
+} */
+
+.header {
+  height: 40px;
   align-items: center;
-  box-sizing: border-box;
 }
 
-.name-group + .container-content-group {
-  color: red
+.header > p {
+  background-color: antiquewhite;
+  color: black;
 }
+
+li.node:last-child .tree-line-root {
+  display: none;
+}
+
+ul.nested .node.column:last-child .tree-line-root {
+  /* display: none; */
+}
+.tree-line {
+  align-self: flex-start;
+  height: 50%;
+}
+
+.nested > p:first-child {
+  color: red;
+  font-weight: 700;
+}
+
+ul > p {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.nested.tree > .nested:last-child > .node.column:last-child .tree-line-root {
+  display: none;
+}
+.node.header {
+  
+}
+/* .nested.tree .node.column:last-child .tree-line-root {
+  display: none;
+} */

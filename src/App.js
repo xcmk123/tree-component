@@ -87,40 +87,67 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <AccordionTree list={TASKS} /> */}
-        <div className='container-header'>
-          <div className="f-16 name-group">Level 1</div>
-          <div className='container-content-group'>
-            {
-              [11,21,31].map(item =>     
-                <div className="container-content" key={item}>
-                  <div className='tree-line-mark'>
-                  </div>
-                  <div className='tree-line-mark-bg'/>
-                  <div className='tree-node'>
-                    <div className='container-header'>
-                      <div className="f-16">Level 2</div>
-                      <div className='container-content-group'>
-                        {
-                          [1,2,3].map((item) => 
-                            <div className='container-content' key={item}>
-                              <div className='tree-line-mark'></div>
-                              <div className='tree-line-mark-bg'/>
-                              <div className='tree-node'>
-                                <div className='container-header'>
-                                  <div className="f-16 tree-node-header">Level 3</div>
-                                </div>
-                              </div>
-                            </div>
-                          )
-                        }
-                      </div>
-                    </div>
+        <ul className='nested tree'>
+          <p>OKR 1</p>
+          {
+            [1,2,3].map((item,index) => 
+              <ul className="nested" key={index}>
+                <div className='node column'>
+                  <div className='tree-line-root' />
+                  <div className='node header'>
+                    <div className='tree-line' />
+                    <p>Them sub okr</p>
                   </div>
                 </div>
-              )
-            }
-          </div>
-        </div>
+                <div className='node column'>
+                  <div className='tree-line-root' />
+                    <div className='node header'>
+                      <div className='tree-line' />
+                      <p>SUB_OKR 1.1</p>
+                    </div>
+                    <ul className="nested">
+                      <div className='node column'>
+                        <div className='tree-line-root' />
+                        <div className='node header'>
+                          <div className='tree-line' />
+                          <p>Them sub kr</p>
+                        </div>
+                      </div>
+                      <li className='node column'>
+                        <div className='tree-line-root' />
+                        <li className='node header'>
+                          <div className='tree-line' />
+                          <p>KR 1.3.1</p>
+                        </li>
+                        {
+                          index === 1 && 
+                            <ul>
+                              <p>task 1.3.1-1</p>
+                              <p>task 1.3.1-2</p>
+                              <p>task 1.3.1-3</p>
+                            </ul>
+                        }
+                      </li>
+                      <li className='node header'>
+                        <div className='tree-line-root' />
+                        <li className='node header'>
+                          <div className='tree-line' />
+                          <p>KR 1.3.2</p>
+                        </li>
+                      </li>
+                      <li className='node header'>
+                        <div className='tree-line-root' />
+                        <li className='node header'>
+                          <div className='tree-line' />
+                          <p>KR 1.3.3</p>
+                        </li>
+                      </li>
+                    </ul>
+                </div>
+              </ul>
+            )
+          }
+        </ul>
       </header>
     </div>
   );
