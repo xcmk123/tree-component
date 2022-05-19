@@ -1,153 +1,170 @@
-import './App.css';
+import { Fragment } from "react";
+import "./App.css";
 const TASKS = [
   {
     id: 1,
-    name: 'This is header 1',
-    deadLine: '31/5/2021',
-    role: 'HEADER',
+    name: "This is header 1",
+    deadLine: "31/5/2021",
+    role: "HEADER",
     employee: {
-      id: 'Mor_Hn_223',
-      name: 'Hieu_Mor'
+      id: "Mor_Hn_223",
+      name: "Hieu_Mor",
     },
     density: 50,
     process: 90,
     quality: 50,
     sub_tree: {
-      role: 'SUB_OKR',
+      role: "SUB_OKR",
       data: [
-        { 
-          id: 1, name: 'This is SUB_OKR 1', 
+        {
+          id: 1,
+          name: "This is SUB_OKR 1",
           sub_tree: {
-            role: 'KR',
+            role: "KR",
             data: [
-              { id: 1, name: 'This is KR 1', },
-              { id: 2, name: 'This is KR 2', },
-              { id: 3, name: 'This is KR 3', }
+              { id: 1, name: "This is KR 1" },
+              { id: 2, name: "This is KR 2" },
+              { id: 3, name: "This is KR 3" },
             ],
-          }
+          },
         },
         // { id: 2, name: 'This is SUB_OKR 2' },
         // { id: 3, name: 'This is SUB_OKR 3' }
-      ]
-    }
+      ],
+    },
   },
   {
     id: 1,
-    name: 'This is header 2',
-    deadLine: '31/5/2021',
-    role: 'HEADER',
+    name: "This is header 2",
+    deadLine: "31/5/2021",
+    role: "HEADER",
     employee: {
-      id: 'Mor_Hn_223',
-      name: 'Hieu_Mor'
+      id: "Mor_Hn_223",
+      name: "Hieu_Mor",
     },
     density: 50,
     process: 90,
     quality: 50,
     sub_tree: {
-      role: 'SUB_OKR',
+      role: "SUB_OKR",
       data: [
-        { 
-          id: 1, name: 'This is SUB_OKR 1', 
+        {
+          id: 1,
+          name: "This is SUB_OKR 1",
           sub_tree: {
-            role: 'KR',
+            role: "KR",
             data: [
-              { id: 1, name: 'This is KR 1', },
-              { id: 2, name: 'This is KR 2', },
-              { id: 3, name: 'This is KR 3', }
+              { id: 1, name: "This is KR 1" },
+              { id: 2, name: "This is KR 2" },
+              { id: 3, name: "This is KR 3" },
             ],
-          }
+          },
         },
         // { id: 2, name: 'This is SUB_OKR 2' },
         // { id: 3, name: 'This is SUB_OKR 3' }
-      ]
-    }
-  }
-] 
+      ],
+    },
+  },
+];
 const AccordionTree = (props) => {
-  console.log(props.list)
-  return props.list.map(item => {
-    if ( item.sub_tree ) {
+  console.log(props.list);
+  return props.list.map((item) => {
+    if (item.sub_tree) {
       return (
-        <div 
-          key={`_${item.id}_${item.name}`} 
-          className={`container-header`}
-        >
-          <h2>id: {`${item.id}`} name: {`${item.name}`} </h2>
+        <div key={`_${item.id}_${item.name}`} className={`container-header`}>
+          <h2>
+            id: {`${item.id}`} name: {`${item.name}`}{" "}
+          </h2>
           <AccordionTree list={item.sub_tree.data} />
         </div>
-      )
+      );
     }
     return (
-      <h4 key={`_${item.id}_${item.name}`}>id: {`${item.id}`} name: {`${item.name}`}</h4>
-    )
-  })
-}
+      <h4 key={`_${item.id}_${item.name}`}>
+        id: {`${item.id}`} name: {`${item.name}`}
+      </h4>
+    );
+  });
+};
+
+const Node = ({ name, item, role = "header" }) => {
+  return (
+    <div className={`node ${role}`}>
+      <TreeLineRoot />
+      <div className="tree-line" />
+      <p>
+        {name} {item}
+      </p>
+    </div>
+  );
+};
+
+const NodeOKR =({ name }) => {
+  return (
+    <div className={`node okr`}>
+      <p>
+        {name}
+      </p>
+    </div>
+  );
+};
+
+const Nested = ({ children, isOKR = false }) => {
+  return (
+    <ul className="nested">
+      <div className="node column">
+        {/* { !isOKR && <TreeLineRoot /> } */}
+        {children}
+      </div>
+    </ul>
+  )
+};
+
+const TreeLineRoot = () => {
+  return <div className="tree-line-root" />;
+};
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <AccordionTree list={TASKS} /> */}
-        <ul className='nested tree'>
-          <p>OKR 1</p>
-          {
-            [1,2,3].map((item,index) => 
-              <ul className="nested" key={index}>
-                <div className='node column'>
-                  <div className='tree-line-root' />
-                  <div className='node header'>
-                    <div className='tree-line' />
-                    <p>Them sub okr</p>
-                  </div>
-                </div>
-                <div className='node column'>
-                  <div className='tree-line-root' />
-                    <div className='node header'>
-                      <div className='tree-line' />
-                      <p>SUB_OKR 1.1</p>
-                    </div>
-                    <ul className="nested">
-                      <div className='node column'>
-                        <div className='tree-line-root' />
-                        <div className='node header'>
-                          <div className='tree-line' />
-                          <p>Them sub kr</p>
-                        </div>
-                      </div>
-                      <li className='node column'>
-                        <div className='tree-line-root' />
-                        <li className='node header'>
-                          <div className='tree-line' />
-                          <p>KR 1.3.1</p>
-                        </li>
+        {
+          [
+            'Day la okr 1',
+            'Day la okr 2'
+          ].map((okr, index) => 
+            <Fragment key={index}>
+              <NodeOKR name={okr} />
+              <Nested>
+                {
+                  [1,2].map((subOKR, index) => 
+                    <Fragment key={index}>
+                      <Node name={`Sub OKR ${subOKR}`} />
+                      <Nested>
+                        <Node name="+ Thêm KR" role="add_sub" />
                         {
-                          index === 1 && 
-                            <ul>
-                              <p>task 1.3.1-1</p>
-                              <p>task 1.3.1-2</p>
-                              <p>task 1.3.1-3</p>
-                            </ul>
+                          [1,2].map((kr, index) => 
+                            <Fragment key={index}>
+                              <Node name={`KR ${subOKR}.${kr}`} />
+                              <Nested>
+                                <Node name="+ Thêm task" role="add_sub" />
+                                {
+                                  [1,2].map((task, index) => 
+                                    <Node name={`Task ${subOKR}.${kr}.${task}`} key={index} />
+                                  )
+                                }
+                              </Nested>
+                            </Fragment>
+                          )
                         }
-                      </li>
-                      <li className='node header'>
-                        <div className='tree-line-root' />
-                        <li className='node header'>
-                          <div className='tree-line' />
-                          <p>KR 1.3.2</p>
-                        </li>
-                      </li>
-                      <li className='node header'>
-                        <div className='tree-line-root' />
-                        <li className='node header'>
-                          <div className='tree-line' />
-                          <p>KR 1.3.3</p>
-                        </li>
-                      </li>
-                    </ul>
-                </div>
-              </ul>
-            )
-          }
-        </ul>
+                      </Nested>
+                    </Fragment>
+                  )
+                }
+              </Nested>
+            </Fragment>
+          )
+        }
       </header>
     </div>
   );

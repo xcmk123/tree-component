@@ -104,28 +104,28 @@ ul {
   display: block;
 }
 
-
-/* ul.nested ul.nested:last-child .node.column .tree-line-root {
-  display: none;
-} */
-
+.okr {
+  margin-top: 25px;
+}
 .header {
   height: 40px;
   align-items: center;
 }
 
-.header > p {
+.add_sub {
+  height: 40px;
+  align-items: center;
+}
+
+.add_sub > p {
   background-color: antiquewhite;
   color: black;
 }
 
-li.node:last-child .tree-line-root {
-  display: none;
+.header > p {
+  color: white;
 }
 
-ul.nested .node.column:last-child .tree-line-root {
-  /* display: none; */
-}
 .tree-line {
   align-self: flex-start;
   height: 50%;
@@ -141,12 +141,14 @@ ul > p {
   opacity: 0.6;
 }
 
-.nested.tree > .nested:last-child > .node.column:last-child .tree-line-root {
-  display: none;
-}
 .node.header {
-  
+
 }
-/* .nested.tree .node.column:last-child .tree-line-root {
-  display: none;
-} */
+
+ul.nested {
+  margin:  0;
+}
+
+.node:last-child .tree-line-root {
+  /* display: none; */
+}
