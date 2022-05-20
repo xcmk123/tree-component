@@ -57,39 +57,27 @@ h4 {
 
 .tree-line {
   width: 40px;
+  height: 10px;
   border-bottom: 1px solid red;
   border-left: 1px solid red;
   border-bottom-left-radius: 5px;
   box-sizing: border-box;
-  align-self: center;
+  align-self: flex-start;
 }
 
 .tree-line-root {
   position: absolute;
+  top: 0;
   left: 0;
   border-left: 1px solid red;
   height: 100%;
   box-sizing: border-box;
-
-}
-
-.node-container {
-  display: flex;
-  align-items: center;
 }
 
 .node {
   display: flex;
   position: relative;
 }
-.column {
-  flex-direction: column;
-}
-
-/* .node-group .ctn-item:last-child .tree-line-root {
-  height: calc(50% - 3px);
-  top: 0;
-}  */
 
 p {
   margin: 5px 0;
@@ -126,11 +114,6 @@ ul {
   color: white;
 }
 
-.tree-line {
-  align-self: flex-start;
-  height: 50%;
-}
-
 .nested > p:first-child {
   color: red;
   font-weight: 700;
@@ -141,14 +124,31 @@ ul > p {
   opacity: 0.6;
 }
 
-.node.header {
-
-}
-
 ul.nested {
   margin:  0;
 }
 
-.node:last-child .tree-line-root {
-  /* display: none; */
+/* LAST */
+
+#OKR {
+  font-size: 14px;
+}
+
+ul:not(#OKR) {
+  color: red;
+}
+
+/* li:last-child:not(#OKR > li) {
+  color: green;
+} */
+
+/* li:last-child:not(#OKR > li) 
+> .node
+> .tree-line-root:last-child 
+{
+  display: none;
+} */
+
+.container-node {
+  position: relative;
 }

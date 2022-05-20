@@ -1,170 +1,152 @@
-import { Fragment } from "react";
 import "./App.css";
-const TASKS = [
-  {
-    id: 1,
-    name: "This is header 1",
-    deadLine: "31/5/2021",
-    role: "HEADER",
-    employee: {
-      id: "Mor_Hn_223",
-      name: "Hieu_Mor",
-    },
-    density: 50,
-    process: 90,
-    quality: 50,
-    sub_tree: {
-      role: "SUB_OKR",
-      data: [
-        {
-          id: 1,
-          name: "This is SUB_OKR 1",
-          sub_tree: {
-            role: "KR",
-            data: [
-              { id: 1, name: "This is KR 1" },
-              { id: 2, name: "This is KR 2" },
-              { id: 3, name: "This is KR 3" },
-            ],
-          },
-        },
-        // { id: 2, name: 'This is SUB_OKR 2' },
-        // { id: 3, name: 'This is SUB_OKR 3' }
-      ],
-    },
-  },
-  {
-    id: 1,
-    name: "This is header 2",
-    deadLine: "31/5/2021",
-    role: "HEADER",
-    employee: {
-      id: "Mor_Hn_223",
-      name: "Hieu_Mor",
-    },
-    density: 50,
-    process: 90,
-    quality: 50,
-    sub_tree: {
-      role: "SUB_OKR",
-      data: [
-        {
-          id: 1,
-          name: "This is SUB_OKR 1",
-          sub_tree: {
-            role: "KR",
-            data: [
-              { id: 1, name: "This is KR 1" },
-              { id: 2, name: "This is KR 2" },
-              { id: 3, name: "This is KR 3" },
-            ],
-          },
-        },
-        // { id: 2, name: 'This is SUB_OKR 2' },
-        // { id: 3, name: 'This is SUB_OKR 3' }
-      ],
-    },
-  },
-];
-const AccordionTree = (props) => {
-  console.log(props.list);
-  return props.list.map((item) => {
-    if (item.sub_tree) {
-      return (
-        <div key={`_${item.id}_${item.name}`} className={`container-header`}>
-          <h2>
-            id: {`${item.id}`} name: {`${item.name}`}{" "}
-          </h2>
-          <AccordionTree list={item.sub_tree.data} />
-        </div>
-      );
-    }
-    return (
-      <h4 key={`_${item.id}_${item.name}`}>
-        id: {`${item.id}`} name: {`${item.name}`}
-      </h4>
-    );
-  });
-};
+// const TASKS = [
+//   {
+//     id: 1,
+//     name: "This is header 1",
+//     deadLine: "31/5/2021",
+//     role: "HEADER",
+//     employee: {
+//       id: "Mor_Hn_223",
+//       name: "Hieu_Mor",
+//     },
+//     density: 50,
+//     process: 90,
+//     quality: 50,
+//     sub_tree: {
+//       role: "SUB_OKR",
+//       data: [
+//         {
+//           id: 1,
+//           name: "This is SUB_OKR 1",
+//           sub_tree: {
+//             role: "KR",
+//             data: [
+//               { id: 1, name: "This is KR 1" },
+//               { id: 2, name: "This is KR 2" },
+//               { id: 3, name: "This is KR 3" },
+//             ],
+//           },
+//         },
+//         // { id: 2, name: 'This is SUB_OKR 2' },
+//         // { id: 3, name: 'This is SUB_OKR 3' }
+//       ],
+//     },
+//   },
+//   {
+//     id: 1,
+//     name: "This is header 2",
+//     deadLine: "31/5/2021",
+//     role: "HEADER",
+//     employee: {
+//       id: "Mor_Hn_223",
+//       name: "Hieu_Mor",
+//     },
+//     density: 50,
+//     process: 90,
+//     quality: 50,
+//     sub_tree: {
+//       role: "SUB_OKR",
+//       data: [
+//         {
+//           id: 1,
+//           name: "This is SUB_OKR 1",
+//           sub_tree: {
+//             role: "KR",
+//             data: [
+//               { id: 1, name: "This is KR 1" },
+//               { id: 2, name: "This is KR 2" },
+//               { id: 3, name: "This is KR 3" },
+//             ],
+//           },
+//         },
+//         // { id: 2, name: 'This is SUB_OKR 2' },
+//         // { id: 3, name: 'This is SUB_OKR 3' }
+//       ],
+//     },
+//   },
+// ];
+// const AccordionTree = (props) => {
+//   console.log(props.list);
+//   return props.list.map((item) => {
+//     if (item.sub_tree) {
+//       return (
+//         <div key={`_${item.id}_${item.name}`} className={`container-header`}>
+//           <h2>
+//             id: {`${item.id}`} name: {`${item.name}`}{" "}
+//           </h2>
+//           <AccordionTree list={item.sub_tree.data} />
+//         </div>
+//       );
+//     }
+//     return (
+//       <h4 key={`_${item.id}_${item.name}`}>
+//         id: {`${item.id}`} name: {`${item.name}`}
+//       </h4>
+//     );
+//   });
+// };
 
-const Node = ({ name, item, role = "header" }) => {
+// const TreeLineRoot = () => {
+//   return <div className="tree-line-root" />;
+// };
+
+const Node = ({children, lastSub = false}) => {
   return (
-    <div className={`node ${role}`}>
-      <TreeLineRoot />
+    <div className="node">
       <div className="tree-line" />
-      <p>
-        {name} {item}
-      </p>
+      {children}
+      { !lastSub && <div className="tree-line-root" /> }
     </div>
-  );
-};
-
-const NodeOKR =({ name }) => {
+  )
+}
+const ContainerNode = ({children, lastSub = false}) => {
   return (
-    <div className={`node okr`}>
-      <p>
-        {name}
-      </p>
-    </div>
-  );
-};
-
-const Nested = ({ children, isOKR = false }) => {
-  return (
-    <ul className="nested">
-      <div className="node column">
-        {/* { !isOKR && <TreeLineRoot /> } */}
-        {children}
-      </div>
+    <ul className="container-node">
+      {children}
+      { !lastSub && <div className="tree-line-root" /> }
     </ul>
   )
-};
-
-const TreeLineRoot = () => {
-  return <div className="tree-line-root" />;
-};
-
+}
+const tree1 = [1,2]
+const tree2 = [1,2,3]
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {
-          [
-            'Day la okr 1',
-            'Day la okr 2'
-          ].map((okr, index) => 
-            <Fragment key={index}>
-              <NodeOKR name={okr} />
-              <Nested>
-                {
-                  [1,2].map((subOKR, index) => 
-                    <Fragment key={index}>
-                      <Node name={`Sub OKR ${subOKR}`} />
-                      <Nested>
-                        <Node name="+ Thêm KR" role="add_sub" />
-                        {
-                          [1,2].map((kr, index) => 
-                            <Fragment key={index}>
-                              <Node name={`KR ${subOKR}.${kr}`} />
-                              <Nested>
-                                <Node name="+ Thêm task" role="add_sub" />
-                                {
-                                  [1,2].map((task, index) => 
-                                    <Node name={`Task ${subOKR}.${kr}.${task}`} key={index} />
-                                  )
-                                }
-                              </Nested>
-                            </Fragment>
-                          )
-                        }
-                      </Nested>
-                    </Fragment>
-                  )
-                }
-              </Nested>
-            </Fragment>
-          )
-        }
+        <ul id="OKR">
+          {[1].map((item, index) =>
+            // OKR 
+            <li key={index}><span>OKR {item}</span>
+              <ul>
+                <Node><span>+ Thêm SUB_OKR</span></Node> 
+                {tree1.map((item, index) => 
+                  // SUB_OKR
+                  <li key={index}>
+                    <Node lastSub={tree1.length === index + 1}><span>SUB_OKR {item}</span></Node> 
+                    <ContainerNode lastSub={tree1.length === index + 1}>
+                      <Node><span>+ Thêm KR</span></Node> 
+                      {tree1.map((item, index) => 
+                        // KR
+                        <li key={index}>
+                          <Node lastSub={tree1.length === index + 1}><span>KR {item}</span></Node> 
+                          <ContainerNode lastSub={tree1.length === index + 1}>
+                            <Node><span>+ Thêm task</span></Node> 
+                            {tree2.map((item, index) => 
+                              // TASK
+                              <li key={index}>
+                                <Node lastSub={tree2.length === index + 1}><span>TASK {item}</span></Node>
+                              </li>
+                            )}
+                          </ContainerNode>
+                        </li>
+                      )}
+                    </ContainerNode>
+                  </li>
+                )}
+              </ul>
+            </li>
+          )}
+        </ul>
       </header>
     </div>
   );
