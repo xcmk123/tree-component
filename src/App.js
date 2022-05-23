@@ -1,4 +1,8 @@
+import { Fragment } from "react";
+import { useState } from "react";
 import "./App.css";
+import Modal from "./components/Modal";
+import ModalContext from "./context/ModalContext";
 // const TASKS = [
 //   {
 //     id: 1,
@@ -90,63 +94,32 @@ import "./App.css";
 //   return <div className="tree-line-root" />;
 // };
 
-const Node = ({children, lastSub = false}) => {
-  return (
-    <div className="node">
-      <div className="tree-line" />
-      {children}
-      { !lastSub && <div className="tree-line-root" /> }
-    </div>
-  )
-}
-const ContainerNode = ({children, lastSub = false}) => {
-  return (
-    <ul className="container-node">
-      {children}
-      { !lastSub && <div className="tree-line-root" /> }
-    </ul>
-  )
-}
-const tree1 = [1,2]
-const tree2 = [1,2,3]
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <ul id="OKR">
-          {[1].map((item, index) =>
-            // OKR 
-            <li key={index}><span>OKR {item}</span>
-              <ul>
-                <Node><span>+ Thêm SUB_OKR</span></Node> 
-                {tree1.map((item, index) => 
-                  // SUB_OKR
-                  <li key={index}>
-                    <Node lastSub={tree1.length === index + 1}><span>SUB_OKR {item}</span></Node> 
-                    <ContainerNode lastSub={tree1.length === index + 1}>
-                      <Node><span>+ Thêm KR</span></Node> 
-                      {tree1.map((item, index) => 
-                        // KR
-                        <li key={index}>
-                          <Node lastSub={tree1.length === index + 1}><span>KR {item}</span></Node> 
-                          <ContainerNode lastSub={tree1.length === index + 1}>
-                            <Node><span>+ Thêm task</span></Node> 
-                            {tree2.map((item, index) => 
-                              // TASK
-                              <li key={index}>
-                                <Node lastSub={tree2.length === index + 1}><span>TASK {item}</span></Node>
-                              </li>
-                            )}
-                          </ContainerNode>
-                        </li>
-                      )}
-                    </ContainerNode>
-                  </li>
-                )}
-              </ul>
-            </li>
-          )}
-        </ul>
+      {/* <button onClick={() => setOpen({...isOpen, modal1: true })}>Open dialog 1</button> */}
+      <ModalContext>
+        <Fragment>
+          <Modal>
+            {
+              ({ open, handleToggleModal, index }) => {
+                console.log(handleToggleModal)
+                return <Fragment>
+                  <h3>Modal 1: {index}</h3>
+                  <button onClick={() => handleToggleModal(index)}>Close Dialog</button>
+                </Fragment>
+              }
+            }
+          </Modal>
+          <Modal>
+            {
+              props => 
+              <h3 style={{ display: 'none' }}>Modal 1</h3>
+            }
+          </Modal>
+        </Fragment>
+      </ModalContext>
       </header>
     </div>
   );

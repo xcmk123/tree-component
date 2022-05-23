@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -137,17 +137,6 @@ ul.nested {
 ul:not(#OKR) {
   color: red;
 }
-
-/* li:last-child:not(#OKR > li) {
-  color: green;
-} */
-
-/* li:last-child:not(#OKR > li) 
-> .node
-> .tree-line-root:last-child 
-{
-  display: none;
-} */
 
 .container-node {
   position: relative;
