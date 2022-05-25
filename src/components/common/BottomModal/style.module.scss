@@ -1,0 +1,14 @@
+
+.bottom_modal_container {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 20px 17px 12px;
+  border-top: 1px solid #EDEDED;
+  > button {
+    cursor: pointer;
+  }
+}

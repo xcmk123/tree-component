@@ -1,0 +1,18 @@
+
+.body_modal_container {
+  align-items: center;
+  box-sizing: content-box;
+  max-height: 65vh;
+  overflow: auto;
+  scroll-behavior: smooth;
+  margin: 12px 5px 12px 16px;
+}
+
+.body_modal_container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.body_modal_container::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.7); 
+  border-radius: 5px;
+}

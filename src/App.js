@@ -1,8 +1,6 @@
-import { Fragment } from "react";
-import { useState } from "react";
 import "./App.css";
-import Modal from "./components/Modal";
-import ModalContext from "./context/ModalContext";
+import Menu from "./components/common/Menu";
+import useModal from "./hooks/useModal";
 // const TASKS = [
 //   {
 //     id: 1,
@@ -90,36 +88,17 @@ import ModalContext from "./context/ModalContext";
 //   });
 // };
 
-// const TreeLineRoot = () => {
-//   return <div className="tree-line-root" />;
-// };
 
 function App() {
+  const { open, handleToggle } = useModal({
+    open: { 
+      modal_1: true,
+    }
+  })
   return (
     <div className="App">
       <header className="App-header">
-      {/* <button onClick={() => setOpen({...isOpen, modal1: true })}>Open dialog 1</button> */}
-      <ModalContext>
-        <Fragment>
-          <Modal>
-            {
-              ({ open, handleToggleModal, index }) => {
-                console.log(handleToggleModal)
-                return <Fragment>
-                  <h3>Modal 1: {index}</h3>
-                  <button onClick={() => handleToggleModal(index)}>Close Dialog</button>
-                </Fragment>
-              }
-            }
-          </Modal>
-          <Modal>
-            {
-              props => 
-              <h3 style={{ display: 'none' }}>Modal 1</h3>
-            }
-          </Modal>
-        </Fragment>
-      </ModalContext>
+        <Menu />
       </header>
     </div>
   );
