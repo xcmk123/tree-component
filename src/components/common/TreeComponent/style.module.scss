@@ -1,0 +1,104 @@
+
+$width-tree-line: 16px;
+$height-tree-line: 6px;
+$color-border-tree: #EDEDED;
+
+.ctn-item {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.tree-line {
+  position: absolute;
+  width: $width-tree-line;
+  height: 50%;
+  top: 25%;
+  left: 0;
+  transform: translateY(-50%);
+  border-bottom: 1px solid $color-border-tree;
+  border-left: 1px solid $color-border-tree;
+  border-bottom-left-radius: 6px;
+  box-sizing: content-box;
+  align-self: flex-start;
+}
+
+.tree-line-root {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 1px solid $color-border-tree;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.node {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 40px;
+  padding-left: 25px;
+}
+
+p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+ul {
+  display: block;
+}
+
+.okr {
+  margin-top: 25px;
+}
+
+.header {
+  height: 40px;
+  align-items: center;
+}
+
+.add_sub {
+  height: 40px;
+  align-items: center;
+}
+
+ul > p {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+ul.nested {
+  margin:  0;
+}
+
+/* LAST */
+#OKR {
+  font-size: 14px;
+}
+.container-node {
+  position: relative;
+  padding-left: 50px;
+}
+.container-add-sub-tree {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  gap: 8px;
+  > span {
+    font-size: 13px;
+    color: #7A7A7A;
+  }
+}
+.title-sub-tree {
+  font-size: 14px;
+  color: #000000;
+  line-height: 19.04px;
+  height: 19px;
+  margin: 8px 14px;
+}

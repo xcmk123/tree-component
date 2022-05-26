@@ -6,7 +6,6 @@ const useModal = (props) => {
   const idFirstModal = Object.keys(open)[0]
   const handleToggle = (id) => {
     const index = Object.keys(open).findIndex(idModal => idModal === id)
-    console.log(index)
     if ( index !== 0 ) return setOpen({ ...open, [id]: !open[id], [idFirstModal]: !open[idFirstModal] })
     setOpen({ ...open, [idFirstModal]: !open[idFirstModal] })
 

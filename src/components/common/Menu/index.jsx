@@ -1,30 +1,43 @@
-import { useEffect, useRef } from 'react'
+import { useState } from 'react'
+import { useRef } from 'react'
+import useClickOutside from '../../../hooks/useClickOutside'
 import style from './style.module.scss'
-const Menu = () => {
+const Menu = ({children, className, icon}) => {
   const ref = useRef(null)
-  const handleClickOutside = (event) => {
-    if (ref && !ref.current.contains(event.target)) {
-      alert("You clicked outside of me!");
-    }
+
+  const [ isVisible, setVisible ] = useState(false)
+  
+  const onClickOutside = () => {
+    setVisible(false)
   }
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-  },[])
+
+  const onClickMenu = () => {
+    setVisible(!isVisible)
+  }
+
+  const MenuContainer = ({children, className}) => {
+    useClickOutside(ref, onClickOutside)
+    return (
+      <div 
+        className={[style["dd-menu"], className].join(' ')} 
+        ref={ref} 
+        onClick={onClickMenu}
+      >
+        {children}
+      </div>
+    )
+  }
+
   return (
-  <label className={style['dropdown']}>
-    <div className={style['dd-button']}>
-      Dropdown
-    </div>
-    <input type="checkbox" className={style["dd-input"]} id="test" />
-    <ul className={style["dd-menu"]} ref={ref}>
-      <li>Action</li>
-      <li>Another action</li>
-      <li>Something else here</li>
-    </ul>
-  </label>
+    <label className={style['dropdown']} onClick={onClickMenu}>
+      {icon}
+      {
+        isVisible && 
+          <MenuContainer className={className}>
+            {children}
+          </MenuContainer>
+      }
+    </label>
   )
 } 
 export default Menu

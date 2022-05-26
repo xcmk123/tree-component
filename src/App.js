@@ -1,6 +1,5 @@
 import "./App.css";
-import Menu from "./components/common/Menu";
-import useModal from "./hooks/useModal";
+import TreeComponent from "./components/common/TreeComponent";
 // const TASKS = [
 //   {
 //     id: 1,
@@ -90,15 +89,10 @@ import useModal from "./hooks/useModal";
 
 
 function App() {
-  const { open, handleToggle } = useModal({
-    open: { 
-      modal_1: true,
-    }
-  })
   return (
     <div className="App">
       <header className="App-header">
-        <Menu />
+        <TreeComponent />
       </header>
     </div>
   );

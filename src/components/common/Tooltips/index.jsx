@@ -15,30 +15,30 @@ const Tooltips = (props) => {
     ].join(' ')
   }
   
-  const handleFadeoutTooltips = () => {
+  const handleFadeout = () => {
     setVisible(false);
   };
 
-  const handleFadeinTooltips = () => {
+  const handleFadein = () => {
     setHovered(true);
     setVisible(true);
   };
   
-  const handleRemoveTooltips = () => {
+  const handleRemove = () => {
     if (!isVisible) return setHovered(false);
   };
 
   return (
     <div
       id={style["tooltips-container"]}
-      onMouseEnter={handleFadeinTooltips}
-      onMouseLeave={handleFadeoutTooltips}
+      onMouseEnter={handleFadein}
+      onMouseLeave={handleFadeout}
     >
       {children}
       {isHovered && (
         <div
           className={styles()}
-          onAnimationEnd={handleRemoveTooltips}
+          onAnimationEnd={handleRemove}
         >
           {content}
         </div>
