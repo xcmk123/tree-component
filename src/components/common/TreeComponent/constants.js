@@ -38,6 +38,26 @@ export const RESULTS = {
                         {
                           title: 'Task 2',
                         },
+                        {
+                          title: 'Task 3',
+                        },
+                      ]
+                    }
+                  },
+                  {
+                    title: 'KR_2',
+                    subTree: {
+                      role: 'task',
+                      data: [
+                        {
+                          title: 'Task 1',
+                        },
+                        {
+                          title: 'Task 2',
+                        },
+                        {
+                          title: 'Task 3',
+                        },
                       ]
                     }
                   }
@@ -63,9 +83,6 @@ export const RESULTS = {
                         {
                           title: 'Task 3',
                         },
-                        {
-                          title: 'Task 4',
-                        }
                       ]
                     }
                   },
@@ -82,31 +99,6 @@ export const RESULTS = {
                         },
                         {
                           title: 'Task 3',
-                        },
-                        {
-                          title: 'Task 4',
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              title: 'SUB_OKR 3',
-              subTree: {
-                role: 'kr',
-                data: [
-                  {
-                    title: 'KR_1',
-                    subTree: {
-                      role: 'task',
-                      data: [
-                        {
-                          title: 'Task 1',
-                        },
-                        {
-                          title: 'Task 2',
                         },
                       ]
                     }

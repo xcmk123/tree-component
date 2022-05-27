@@ -8,7 +8,8 @@ const Node = ({children, isLastSub, isRootNode}) => {
     return (
       <div className={style["node"]}> 
         {children}
-        { !isRootNode && <TreeLineComponent /> }
+        {/* { !isRootNode && <TreeLineComponent /> } */}
+        <TreeLineComponent /> 
       </div>
     )
   }
@@ -25,15 +26,15 @@ const Node = ({children, isLastSub, isRootNode}) => {
 
 const ContainerNode = ({children, isLastSub = false, isRootNode}) => {
   const RenderByProps = (Component) => {
-    if ( isRootNode ) {
-      return <Component shouldRenderTreeLine={true} />
-    }
+    // if ( isRootNode ) {
+    //   return <Component shouldRenderTreeLine={true} />
+    // }
     return <Component shouldRenderTreeLine={isLastSub} />
   }
   const TreeLineRoot = ({shouldRenderTreeLine}) => {
     return (
       <ul className={style["container-node"]}>
-        {children}
+        {children} 
         { shouldRenderTreeLine && <div className={style['tree-line-root']} /> }
       </ul>
     )
@@ -41,7 +42,6 @@ const ContainerNode = ({children, isLastSub = false, isRootNode}) => {
   return RenderByProps(TreeLineRoot)
 }
 const AddSubTree = ({role, onClick}) => {
-  console.log(role)
   return (
     <div className={style['container-add-sub-tree']}>
       <AddSubTreeIcon />
@@ -54,31 +54,39 @@ const TitleSubTree = ({title}) => {
   return <p className={style['title-sub-tree']}>{title}</p>
 }
 
+const isLastSub = ( element, index ) => {
+  const subTreeLength = element?.subTree?.data.length
+  if ( subTreeLength === 1 ) return true 
+  return subTreeLength === index + 1
+}
+
 const Render = (item) => {
   const nodeRole = item.subTree.role
   const subTreeLength = item.subTree?.data.length
-  return item.subTree.data.map((item, index) => 
-    <li key={index}>
-      <Node 
-        isRootNode={nodeRole === 'okr'}
-        isLastSub={ subTreeLength === index + 1}
-      >             
-        <TitleSubTree title={`${item.title} index là ${index} có arr.lenght = ${subTreeLength}` } />
-      </Node>
-      {
-        item.subTree 
-          ? 
-            <Fragment>
-              <ContainerNode>
-                <Node>
-                  <AddSubTree role={item.subTree.role} />
-                </Node>
-                {Render(item)}
-              </ContainerNode>  
-            </Fragment>
-          : null 
-      }
-    </li>
+  return item.subTree.data.map((element, index) => 
+  {
+    return (
+      <li key={Math.random()}>
+        <Node isLastSub={subTreeLength === index + 1}>             
+          <TitleSubTree title={`${element.title} index là ${index} có arr.lenght = ${subTreeLength}` } />
+        </Node>
+        {
+          element.subTree 
+            ? 
+              <Fragment>
+                <ContainerNode>
+                  <Node>
+                    <h5 style={{ color: 'red' }}>{element.subTree.role} {element.subTree.data.length}</h5>
+                    <AddSubTree role={element.subTree.role} />
+                  </Node>
+                  {Render(element)}
+                </ContainerNode>
+              </Fragment>
+            : null 
+        }
+      </li>
+    )
+  }
 )
 }
 const TreeComponent = () => {
