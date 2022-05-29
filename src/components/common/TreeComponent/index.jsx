@@ -8,8 +8,7 @@ const Node = ({children, isLastSub, isRootNode}) => {
     return (
       <div className={style["node"]}> 
         {children}
-        {/* { !isRootNode && <TreeLineComponent /> } */}
-        <TreeLineComponent /> 
+        { !isRootNode && <TreeLineComponent /> }
       </div>
     )
   }
@@ -26,9 +25,9 @@ const Node = ({children, isLastSub, isRootNode}) => {
 
 const ContainerNode = ({children, isLastSub = false, isRootNode}) => {
   const RenderByProps = (Component) => {
-    // if ( isRootNode ) {
-    //   return <Component shouldRenderTreeLine={true} />
-    // }
+    if ( isRootNode ) {
+      return <Component shouldRenderTreeLine={false} />
+    }
     return <Component shouldRenderTreeLine={isLastSub} />
   }
   const TreeLineRoot = ({shouldRenderTreeLine}) => {
@@ -41,6 +40,7 @@ const ContainerNode = ({children, isLastSub = false, isRootNode}) => {
   }
   return RenderByProps(TreeLineRoot)
 }
+
 const AddSubTree = ({role, onClick}) => {
   return (
     <div className={style['container-add-sub-tree']}>
@@ -54,41 +54,33 @@ const TitleSubTree = ({title}) => {
   return <p className={style['title-sub-tree']}>{title}</p>
 }
 
-const isLastSub = ( element, index ) => {
-  const subTreeLength = element?.subTree?.data.length
-  if ( subTreeLength === 1 ) return true 
-  return subTreeLength === index + 1
-}
-
 const Render = (item) => {
-  const nodeRole = item.subTree.role
+  const nodeRole = item?.subTree.role
   const subTreeLength = item.subTree?.data.length
   return item.subTree.data.map((element, index) => 
-  {
-    return (
-      <li key={Math.random()}>
-        <Node isLastSub={subTreeLength === index + 1}>             
-          <TitleSubTree title={`${element.title} index là ${index} có arr.lenght = ${subTreeLength}` } />
-        </Node>
-        {
-          element.subTree 
-            ? 
-              <Fragment>
-                <ContainerNode>
-                  <Node>
-                    <h5 style={{ color: 'red' }}>{element.subTree.role} {element.subTree.data.length}</h5>
-                    <AddSubTree role={element.subTree.role} />
-                  </Node>
-                  {Render(element)}
-                </ContainerNode>
-              </Fragment>
-            : null 
-        }
-      </li>
-    )
-  }
-)
+    {
+      return (
+        <li key={Math.random()}>
+          <Node 
+            isLastSub={subTreeLength === index + 1}
+            isRootNode={nodeRole === 'okr'}
+          >             
+            <TitleSubTree title={`${element.title} index là ${index} có arr.lenght = ${subTreeLength}` } />
+          </Node>
+          <Fragment>
+            <ContainerNode isLastSub={subTreeLength !== index + 1}>
+              <Node isLastSub={element.subTree.data.length === 0}>
+                <AddSubTree role={element.subTree.role} />
+              </Node>
+              { element.subTree && Render(element)}
+            </ContainerNode>
+          </Fragment>
+        </li>
+      )
+    }
+  )
 }
+
 const TreeComponent = () => {
   return (
     <ul id="OKR" style={{ padding: 0 }}>

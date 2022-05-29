@@ -13,7 +13,6 @@ export const ROLE_LIST = {
 }
 
 export const RESULTS = {
-  title: '',
   subTree: {
     role: 'okr',
     data: [
@@ -26,84 +25,14 @@ export const RESULTS = {
               title: 'SUB_OKR 1',
               subTree: {
                 role: 'kr',
-                data: [
-                  {
-                    title: 'KR_1',
-                    subTree: {
-                      role: 'task',
-                      data: [
-                        {
-                          title: 'Task 1',
-                        },
-                        {
-                          title: 'Task 2',
-                        },
-                        {
-                          title: 'Task 3',
-                        },
-                      ]
-                    }
-                  },
-                  {
-                    title: 'KR_2',
-                    subTree: {
-                      role: 'task',
-                      data: [
-                        {
-                          title: 'Task 1',
-                        },
-                        {
-                          title: 'Task 2',
-                        },
-                        {
-                          title: 'Task 3',
-                        },
-                      ]
-                    }
-                  }
-                ]
+                data: []
               }
             },
             {
               title: 'SUB_OKR 2',
               subTree: {
                 role: 'kr',
-                data: [
-                  {
-                    title: 'KR_1',
-                    subTree: {
-                      role: 'task',
-                      data: [
-                        {
-                          title: 'Task 1',
-                        },
-                        {
-                          title: 'Task 2',
-                        },
-                        {
-                          title: 'Task 3',
-                        },
-                      ]
-                    }
-                  },
-                  {
-                    title: 'KR_2',
-                    subTree: {
-                      role: 'task',
-                      data: [
-                        {
-                          title: 'Task 1',
-                        },
-                        {
-                          title: 'Task 2',
-                        },
-                        {
-                          title: 'Task 3',
-                        },
-                      ]
-                    }
-                  }
-                ]
+                data: []
               }
             }
           ]
