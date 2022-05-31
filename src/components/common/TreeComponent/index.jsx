@@ -1,7 +1,8 @@
 import { Fragment } from 'react'
 import AddSubTreeIcon from '../../../assets/icons/AddSubTreeIcon'
 import style from './style.module.scss'
-import { ROLE, ROLE_LIST, RESULTS } from './constants'
+import { ROLE, RESULTS } from './constants'
+import Collapsible from '../../Collapsible/Collapsible'
 
 const Node = ({children, isLastSub, isRootNode}) => {
   const NodeContent = () => {
@@ -45,7 +46,7 @@ const AddSubTree = ({role, onClick}) => {
   return (
     <div className={style['container-add-sub-tree']}>
       <AddSubTreeIcon />
-      <span>Thêm {ROLE_LIST[role]}</span>
+      <span>{ROLE[role]}</span>
     </div>
   )
 }
@@ -55,26 +56,39 @@ const TitleSubTree = ({title}) => {
 }
 
 const Render = (item) => {
-  const nodeRole = item?.subTree.role
-  const subTreeLength = item.subTree?.data.length
-  return item.subTree.data.map((element, index) => 
+  const nodeRole = item?.subtree.role
+  const subTreeLength = item.subtree?.data.length
+  const TitleContainer = ({element, index}) => {
+    return (
+      <Node 
+        isLastSub={subTreeLength === index + 1}
+        isRootNode={nodeRole === 'okr'}
+      >             
+        <TitleSubTree title={element.title} />
+      </Node>
+    )
+  }
+  return item.subtree.data.map((element, index) => 
     {
       return (
         <li key={Math.random()}>
-          <Node 
-            isLastSub={subTreeLength === index + 1}
-            isRootNode={nodeRole === 'okr'}
-          >             
-            <TitleSubTree title={`${element.title} index là ${index} có arr.lenght = ${subTreeLength}` } />
-          </Node>
-          <Fragment>
-            <ContainerNode isLastSub={subTreeLength !== index + 1}>
-              <Node isLastSub={element.subTree.data.length === 0}>
-                <AddSubTree role={element.subTree.role} />
-              </Node>
-              { element.subTree && Render(element)}
-            </ContainerNode>
-          </Fragment>
+          {
+            element.subtree 
+            ? 
+              <Collapsible TitleContainer={<TitleContainer element={element} index={index} />}>
+                <ContainerNode 
+                  isLastSub={subTreeLength !== index + 1}
+                  isRootNode={nodeRole === 'okr'}
+                >
+                  <Node isLastSub={element.subtree?.data.length === 0}>
+                    <AddSubTree role={element.subtree?.role} />
+                  </Node>
+                  { element.subtree && Render(element)}
+                </ContainerNode>
+              </Collapsible>
+            : 
+              <TitleContainer element={element} index={index} />
+          }
         </li>
       )
     }
